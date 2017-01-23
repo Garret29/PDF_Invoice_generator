@@ -4,6 +4,7 @@ import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
+import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 
 import java.io.File;
 import java.io.IOException;
@@ -17,19 +18,22 @@ public class GeneratorModel extends Observable {
     public void generatePDF(File file) throws IOException{
 
         PDDocument document = new PDDocument();
-        PDPage page = new PDPage();
-        document.addPage(page);
+        document.addPage(new PDPage());
+        PDPage page = document.getPage(0);
 
-        PDPageContentStream contentStream = new PDPageContentStream(document, document.getPage(1));
+        PDImageXObject imageXObject = PDImageXObject.createFromFile(getClass().getClassLoader().getResource("blank1.png").getPath(), document);
+
+        PDPageContentStream contentStream = new PDPageContentStream(document, page);
+        contentStream.drawImage(imageXObject, 0, 0);
+
         contentStream.beginText();
-        contentStream.setFont(PDType1Font.HELVETICA_BOLD, 20);
+        contentStream.setFont(PDType1Font.HELVETICA, 20);
 
-        contentStream.newLineAtOffset(15, 600);
+        contentStream.newLineAtOffset(100, 0);
         contentStream.showText("hello world");
         contentStream.endText();
         contentStream.close();
 
-        document.addPage(page);
         document.save(file);
         document.close();
     }

@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import pl.dtree.pdf_invoice_generator.controller.GeneratorController;
@@ -21,9 +22,14 @@ public class GeneratorView extends Application implements Observer{
     public void start(Stage stage) throws Exception {
         GeneratorModel model = new GeneratorModel();
 
-        //FXMLLoader loader = new FXMLLoader();
+        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("invoiceGeneratorView.fxml"));
+        GridPane gridPane = loader.load();
+        GeneratorController controller = loader.getController();
+        controller.setModel(model);
 
-        @SuppressWarnings("ConstantConditions") Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("invoiceGeneratorView.fxml"));
+        //@SuppressWarnings("ConstantConditions") Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("invoiceGeneratorView.fxml"));
+        //((GeneratorController)loader.getController()).setModel(model);
+
         /*
         loader.setControllerFactory(new Callback<Class<?>, Object>() {
             @Override
@@ -33,7 +39,8 @@ public class GeneratorView extends Application implements Observer{
         });
         */
 
-        Scene scene = new Scene(root, 750, 500);
+
+        Scene scene = new Scene(gridPane, 750, 500);
         stage.setTitle("Generator faktur Dtree");
         stage.setScene(scene);
         stage.setResizable(false);
@@ -45,7 +52,6 @@ public class GeneratorView extends Application implements Observer{
     }
 
     public static void main(String[] args) throws Exception {
-        GeneratorView view = new GeneratorView();
 
         launch(args);
     }

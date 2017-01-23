@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 
 <GridPane hgap="4.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="436.0" prefWidth="851.0" style="-fx-background-image: url('background.png');" xmlns="http://javafx.com/javafx/8.0.76-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.dtree.pdf_invoice_generator.controller.GeneratorController">
-  <columnConstraints>
+    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="202.0" minWidth="10.0" prefWidth="49.0" />
       <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="202.0" minWidth="10.0" prefWidth="149.0" />
       <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="291.0" minWidth="0.0" prefWidth="233.0" />
@@ -51,6 +51,9 @@
       <Label text="Termin płatności" GridPane.columnIndex="1" GridPane.rowIndex="9" />
       <Label text="Miejsce i data wystawienia faktury" textAlignment="RIGHT" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
       <Label text="Numer faktury" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+       <Label text="Numer rachunku" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+
+      <TextField fx:id="invoiceIdField" GridPane.columnIndex="2" GridPane.rowIndex="1" />
       <TextField fx:id="placeAndDateField" GridPane.columnIndex="2" GridPane.rowIndex="2" />
       <TextField fx:id="recieverField" GridPane.columnIndex="2" GridPane.rowIndex="3" />
       <TextField fx:id="streetField" GridPane.columnIndex="2" GridPane.rowIndex="4" />
@@ -58,9 +61,7 @@
       <TextField fx:id="cityField" GridPane.columnIndex="2" GridPane.rowIndex="6" />
       <TextField fx:id="serviceField" GridPane.columnIndex="2" GridPane.rowIndex="7" />
       <TextField fx:id="valueField" GridPane.columnIndex="2" GridPane.rowIndex="8" />
-      <TextField fx:id="invoiceIdField" GridPane.columnIndex="2" GridPane.rowIndex="1" />
       <TextField fx:id="paymentDateField" GridPane.columnIndex="2" GridPane.rowIndex="9" />
-      <Label text="Numer rachunku" GridPane.columnIndex="1" GridPane.rowIndex="10" />
       <TextField GridPane.columnIndex="2" GridPane.rowIndex="10" />
    </children>
 </GridPane>

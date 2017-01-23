@@ -42,6 +42,7 @@ public class GeneratorController implements Initializable {
     private Image image;
 
     private GeneratorModel model;
+
     /*
     public GeneratorController(GeneratorModel model) {
         image = null;
@@ -56,11 +57,15 @@ public class GeneratorController implements Initializable {
         Window stage = ((Node) actionEvent.getSource()).getScene().getWindow();
         saveChooser.setTitle("Zapisz plik");
         saveChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+        saveChooser.setSelectedExtensionFilter(new FileChooser.ExtensionFilter("PDF file", "*.pdf"));
+        saveChooser.setInitialFileName("faktura.pdf");
         File file = saveChooser.showSaveDialog(stage);
-        try {
-            model.generatePDF(file);
-        } catch (IOException e) {
-            e.printStackTrace();
+        if(file!=null) {
+            try {
+                model.generatePDF(file);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -88,4 +93,7 @@ public class GeneratorController implements Initializable {
     }
 
 
+    public void setModel(GeneratorModel model) {
+        this.model = model;
+    }
 }
