@@ -5,15 +5,16 @@ import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Observable;
 
 
 public class GeneratorModel extends Observable {
 
-    private String path;
+    private File logoImage;
 
-    public void generatePDF() throws IOException{
+    public void generatePDF(File file) throws IOException{
 
         PDDocument document = new PDDocument();
         PDPage page = new PDPage();
@@ -29,11 +30,11 @@ public class GeneratorModel extends Observable {
         contentStream.close();
 
         document.addPage(page);
-        document.save(path);
+        document.save(file);
         document.close();
     }
 
-    public void setPath(String path) {
-        this.path = path;
+    public void setLogoImage(File logoImage) {
+        this.logoImage = logoImage;
     }
 }
