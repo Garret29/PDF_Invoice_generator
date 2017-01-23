@@ -5,15 +5,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import java.util.Observable;
+import java.util.Observer;
 
-public class GeneratorView extends Application {
 
-
-
+public class GeneratorView extends Application implements Observer{
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("invoiceGeneratorView.fxml"));
+
+        @SuppressWarnings("ConstantConditions") Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("invoiceGeneratorView.fxml"));
 
         Scene scene = new Scene(root, 750, 500);
 
@@ -23,7 +24,9 @@ public class GeneratorView extends Application {
         stage.show();
     }
 
+    public void update(Observable o, Object arg) {
 
+    }
 
     public static void main(String[] args) throws Exception {
         launch(args);
