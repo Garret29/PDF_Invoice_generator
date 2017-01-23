@@ -15,6 +15,7 @@ import pl.dtree.pdf_invoice_generator.model.GeneratorModel;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Hashtable;
 import java.util.ResourceBundle;
 
 public class GeneratorController implements Initializable {
@@ -43,13 +44,7 @@ public class GeneratorController implements Initializable {
 
     private GeneratorModel model;
 
-    /*
-    public GeneratorController(GeneratorModel model) {
-        image = null;
-        this.model = model;
-    }
-    */
-
+    private Hashtable<String, String > invoiceData;
 
     @FXML
     public void generateFileAction(ActionEvent actionEvent) {
@@ -90,10 +85,32 @@ public class GeneratorController implements Initializable {
         if (image != null) {
             logoImage.setImage(image);
         }
+
+        setInvoiceData(new Hashtable<String, String>());
+
+
     }
 
 
     public void setModel(GeneratorModel model) {
         this.model = model;
+    }
+
+    public void setInvoiceData(Hashtable<String, String> invoiceData) {
+        invoiceData.put("payment date", paymentDateField.getText());
+        invoiceData.put();
+        invoiceData.put();
+        invoiceData.put();
+        invoiceData.put();
+        invoiceData.put();
+        invoiceData.put();
+
+
+
+        this.invoiceData = invoiceData;
+    }
+
+    public Hashtable<String, String> getInvoiceData() {
+        return invoiceData;
     }
 }

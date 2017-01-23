@@ -8,12 +8,14 @@ import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Hashtable;
 import java.util.Observable;
 
 
 public class GeneratorModel extends Observable {
 
     private File logoImage;
+    private Hashtable<String, String> invoiceData;
 
     public void generatePDF(File file) throws IOException{
 
@@ -40,5 +42,9 @@ public class GeneratorModel extends Observable {
 
     public void setLogoImage(File logoImage) {
         this.logoImage = logoImage;
+    }
+
+    public void setInvoiceData(Hashtable<String, String> invoiceData) {
+        this.invoiceData = invoiceData;
     }
 }
