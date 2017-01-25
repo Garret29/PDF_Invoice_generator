@@ -9,10 +9,8 @@ import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 import java.io.File;
 import java.io.IOException;
 import java.util.Hashtable;
-import java.util.Observable;
 
-
-public class GeneratorModel extends Observable {
+public class GeneratorModel {
 
     private File logoImage;
     private Hashtable<String, String> invoiceData;

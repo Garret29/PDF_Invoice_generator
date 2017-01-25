@@ -11,7 +11,6 @@ import javafx.stage.FileChooser;
 import javafx.stage.Window;
 import pl.dtree.pdf_invoice_generator.model.GeneratorModel;
 
-
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -46,6 +45,18 @@ public class GeneratorController implements Initializable {
 
     private Hashtable<String, String > invoiceData;
 
+    public void updateData() {
+        invoiceData.put("paymentDate", paymentDateField.getText());
+        invoiceData.put("invoiceValue", valueField.getText());
+        invoiceData.put("invoiceService", serviceField.getText());
+        invoiceData.put("recieverCity", cityField.getText());
+        invoiceData.put("recieverPostalCode", postalCodeField.getText());
+        invoiceData.put("InvoicePlaceAndDate", placeAndDateField.getText());
+        invoiceData.put("reciever", recieverField.getText());
+        invoiceData.put("recieverStreet", streetField.getText());
+        invoiceData.put("invoiceID", invoiceIdField.getText());
+    }
+
     @FXML
     public void generateFileAction(ActionEvent actionEvent) {
         FileChooser saveChooser = new FileChooser();
@@ -57,6 +68,7 @@ public class GeneratorController implements Initializable {
         File file = saveChooser.showSaveDialog(stage);
         if(file!=null) {
             try {
+                model.setInvoiceData(invoiceData);
                 model.generatePDF(file);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -86,31 +98,24 @@ public class GeneratorController implements Initializable {
             logoImage.setImage(image);
         }
 
-        setInvoiceData(new Hashtable<String, String>());
-
+        updateData();
 
     }
 
+    public void prepareController(GeneratorModel model) {
+        setModel(model);
+        setInvoiceData(new Hashtable<>());
+    }
 
     public void setModel(GeneratorModel model) {
         this.model = model;
     }
 
-    public void setInvoiceData(Hashtable<String, String> invoiceData) {
-        invoiceData.put("payment date", paymentDateField.getText());
-        invoiceData.put();
-        invoiceData.put();
-        invoiceData.put();
-        invoiceData.put();
-        invoiceData.put();
-        invoiceData.put();
-
-
-
-        this.invoiceData = invoiceData;
-    }
-
     public Hashtable<String, String> getInvoiceData() {
         return invoiceData;
+    }
+
+    public void setInvoiceData(Hashtable<String, String> invoiceData) {
+        this.invoiceData = invoiceData;
     }
 }
