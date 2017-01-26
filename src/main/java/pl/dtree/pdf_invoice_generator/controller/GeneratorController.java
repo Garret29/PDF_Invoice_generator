@@ -1,10 +1,15 @@
 package pl.dtree.pdf_invoice_generator.controller;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
@@ -16,9 +21,22 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Hashtable;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 
 public class GeneratorController implements Initializable {
 
+    @FXML
+    public Button defaultSetButton;
+    @FXML
+    TextField currencyField;
+    @FXML
+    ToggleButton toggleDefaultDataButton;
+    @FXML
+    Label wrongValueLabel2;
+    @FXML
+    Label wrongValueLabel;
+    @FXML
+    Label wrongCodeLabel;
     @FXML
     ImageView logoImage;
     @FXML
@@ -39,11 +57,23 @@ public class GeneratorController implements Initializable {
     TextField streetField;
     @FXML
     TextField invoiceIdField;
+    @FXML
+    TextField inWordsValueField;
+    @FXML
+    TextField senderCityField;
+    @FXML
+    TextField senderPostalCodeField;
+    @FXML
+    TextField senderStreetField;
+    @FXML
+    TextField senderNameDataField;
+    @FXML
+    TextField senderCompanyField;
+    @FXML
+    TextField senderNIPField;
     private Image image;
-
     private GeneratorModel model;
-
-    private Hashtable<String, String > invoiceData;
+    private Hashtable<String, String> invoiceData;
 
     public void updateData() {
         invoiceData.put("paymentDate", paymentDateField.getText());
@@ -51,10 +81,17 @@ public class GeneratorController implements Initializable {
         invoiceData.put("invoiceService", serviceField.getText());
         invoiceData.put("recieverCity", cityField.getText());
         invoiceData.put("recieverPostalCode", postalCodeField.getText());
-        invoiceData.put("InvoicePlaceAndDate", placeAndDateField.getText());
+        invoiceData.put("invoicePlaceAndDate", placeAndDateField.getText());
         invoiceData.put("reciever", recieverField.getText());
         invoiceData.put("recieverStreet", streetField.getText());
         invoiceData.put("invoiceID", invoiceIdField.getText());
+        invoiceData.put("senderCity", senderCityField.getText());
+        invoiceData.put("senderPostalCode", senderPostalCodeField.getText());
+        invoiceData.put("senderStreet", senderStreetField.getText());
+        invoiceData.put("sender", senderNameDataField.getText());
+        invoiceData.put("senderCompany", senderCompanyField.getText());
+        invoiceData.put("currency", currencyField.getText());
+        invoiceData.put("inWordsValue", inWordsValueField.getText());
     }
 
     @FXML
@@ -66,7 +103,7 @@ public class GeneratorController implements Initializable {
         saveChooser.setSelectedExtensionFilter(new FileChooser.ExtensionFilter("PDF file", "*.pdf"));
         saveChooser.setInitialFileName("faktura.pdf");
         File file = saveChooser.showSaveDialog(stage);
-        if(file!=null) {
+        if (file != null) {
             try {
                 model.setInvoiceData(invoiceData);
                 model.generatePDF(file);
@@ -91,6 +128,34 @@ public class GeneratorController implements Initializable {
         }
     }
 
+    @FXML
+    public void senderChangedAction(ActionEvent actionEvent) {
+        if (toggleDefaultDataButton.isSelected()) {
+            toggleDefaultDataButton.setText("Niedomyślne");
+
+            senderStreetField.setDisable(true);
+            senderPostalCodeField.setDisable(true);
+            senderCityField.setDisable(true);
+            senderCompanyField.setDisable(true);
+            senderNameDataField.setDisable(true);
+            senderNIPField.setDisable(true);
+            defaultSetButton.setDisable(true);
+
+
+        } else {
+
+            toggleDefaultDataButton.setText("Domyślne");
+
+            senderStreetField.setDisable(false);
+            senderPostalCodeField.setDisable(false);
+            senderCityField.setDisable(false);
+            senderCompanyField.setDisable(false);
+            senderNameDataField.setDisable(false);
+            senderNIPField.setDisable(false);
+            defaultSetButton.setDisable(false);
+        }
+    }
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -98,8 +163,37 @@ public class GeneratorController implements Initializable {
             logoImage.setImage(image);
         }
 
-        updateData();
+        postalCodeField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (Pattern.matches("\\d\\d-\\d\\d\\d", postalCodeField.getCharacters())) {
+                    wrongCodeLabel.setVisible(false);
+                } else wrongCodeLabel.setVisible(true);
+            }
+        });
 
+        valueField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (Pattern.matches("(((\\d+\\s{1})*)\\d+$)?", valueField.getCharacters())) {
+                    wrongValueLabel.setVisible(false);
+                } else wrongValueLabel.setVisible(true);
+            }
+        });
+
+        inWordsValueField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (Pattern.matches("(((\\p{javaAlphabetic}+\\s{1})*)\\p{javaAlphabetic}+$)?", inWordsValueField.getCharacters())) {
+                    wrongValueLabel2.setVisible(false);
+                } else wrongValueLabel2.setVisible(true);
+            }
+        });
+
+        if (model == null) {
+            prepareController(new GeneratorModel());
+        }
+        updateData();
     }
 
     public void prepareController(GeneratorModel model) {
@@ -118,4 +212,5 @@ public class GeneratorController implements Initializable {
     public void setInvoiceData(Hashtable<String, String> invoiceData) {
         this.invoiceData = invoiceData;
     }
+
 }
