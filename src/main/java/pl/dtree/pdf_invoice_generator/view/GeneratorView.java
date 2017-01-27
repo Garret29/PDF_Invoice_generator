@@ -3,7 +3,7 @@ package pl.dtree.pdf_invoice_generator.view;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.TabPane;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import pl.dtree.pdf_invoice_generator.controller.GeneratorController;
 
@@ -16,8 +16,8 @@ public class GeneratorView extends Application {
     public void start(Stage stage) throws Exception {
 
 
-        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("invoiceGeneratorView.fxml"));
-        TabPane tabPane = loader.load();
+        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("view.fxml"));
+        GridPane gridPane = loader.load();
         GeneratorController controller = loader.getController();
 
         //@SuppressWarnings("ConstantConditions") Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("invoiceGeneratorView.fxml"));
@@ -33,7 +33,7 @@ public class GeneratorView extends Application {
         */
 
 
-        Scene scene = new Scene(tabPane, 750, 500);
+        Scene scene = new Scene(gridPane, 750, 500);
         stage.setTitle("Generator faktur Dtree");
         stage.setScene(scene);
         stage.setResizable(true);

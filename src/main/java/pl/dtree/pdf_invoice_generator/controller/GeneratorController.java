@@ -1,15 +1,11 @@
 package pl.dtree.pdf_invoice_generator.controller;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
@@ -21,77 +17,69 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Hashtable;
 import java.util.ResourceBundle;
-import java.util.regex.Pattern;
 
 public class GeneratorController implements Initializable {
 
+
     @FXML
-    public Button defaultSetButton;
+    public TextField recieverField;
     @FXML
-    TextField currencyField;
+    public TextField recieverField2;
     @FXML
-    ToggleButton toggleDefaultDataButton;
+    public TextField recieverBuildingField;
     @FXML
-    Label wrongValueLabel2;
+    public TextField recieverStreetField;
     @FXML
-    Label wrongValueLabel;
+    public TextField recieverApartmentField;
     @FXML
-    Label wrongCodeLabel;
+    public TextField recieverPostalCodeField;
+    @FXML
+    public TextField recieverCityField;
+    @FXML
+    public TextField recieverNIPField;
+    @FXML
+    public TextField senderField;
+    @FXML
+    public TextField senderField2;
+    @FXML
+    public TextField senderStreetField;
+    @FXML
+    public TextField senderBuildingField;
+    @FXML
+    public TextField senderApartmentField;
+    @FXML
+    public TextField senderPostalCodeField;
+    @FXML
+    public TextField senderCityField;
+    @FXML
+    public TextField senderNIPField;
+    @FXML
+    public TextField senderAccountField;
+    @FXML
+    public TextField invoiceIDField;
+    @FXML
+    public TextField invoiceServiceField;
+    @FXML
+    public TextField invoiceValueField;
+    @FXML
+    public TextField invoiceInWordsValueField;
+    @FXML
+    public TextField invoicePaymentDateField;
+    @FXML
+    public TextField invoiceDateField;
+    @FXML
+    public TextField invoiceCityField;
+    public ScrollPane scrollPane;
+
     @FXML
     ImageView logoImage;
-    @FXML
-    TextField paymentDateField;
-    @FXML
-    TextField valueField;
-    @FXML
-    TextField serviceField;
-    @FXML
-    TextField cityField;
-    @FXML
-    TextField postalCodeField;
-    @FXML
-    TextField placeAndDateField;
-    @FXML
-    TextField recieverField;
-    @FXML
-    TextField streetField;
-    @FXML
-    TextField invoiceIdField;
-    @FXML
-    TextField inWordsValueField;
-    @FXML
-    TextField senderCityField;
-    @FXML
-    TextField senderPostalCodeField;
-    @FXML
-    TextField senderStreetField;
-    @FXML
-    TextField senderNameDataField;
-    @FXML
-    TextField senderCompanyField;
-    @FXML
-    TextField senderNIPField;
+
     private Image image;
     private GeneratorModel model;
     private Hashtable<String, String> invoiceData;
 
     public void updateData() {
-        invoiceData.put("paymentDate", paymentDateField.getText());
-        invoiceData.put("invoiceValue", valueField.getText());
-        invoiceData.put("invoiceService", serviceField.getText());
-        invoiceData.put("recieverCity", cityField.getText());
-        invoiceData.put("recieverPostalCode", postalCodeField.getText());
-        invoiceData.put("invoicePlaceAndDate", placeAndDateField.getText());
-        invoiceData.put("reciever", recieverField.getText());
-        invoiceData.put("recieverStreet", streetField.getText());
-        invoiceData.put("invoiceID", invoiceIdField.getText());
-        invoiceData.put("senderCity", senderCityField.getText());
-        invoiceData.put("senderPostalCode", senderPostalCodeField.getText());
-        invoiceData.put("senderStreet", senderStreetField.getText());
-        invoiceData.put("sender", senderNameDataField.getText());
-        invoiceData.put("senderCompany", senderCompanyField.getText());
-        invoiceData.put("currency", currencyField.getText());
-        invoiceData.put("inWordsValue", inWordsValueField.getText());
+
     }
 
     @FXML
@@ -128,41 +116,15 @@ public class GeneratorController implements Initializable {
         }
     }
 
-    @FXML
-    public void senderChangedAction(ActionEvent actionEvent) {
-        if (toggleDefaultDataButton.isSelected()) {
-            toggleDefaultDataButton.setText("Niedomyślne");
-
-            senderStreetField.setDisable(true);
-            senderPostalCodeField.setDisable(true);
-            senderCityField.setDisable(true);
-            senderCompanyField.setDisable(true);
-            senderNameDataField.setDisable(true);
-            senderNIPField.setDisable(true);
-            defaultSetButton.setDisable(true);
-
-
-        } else {
-
-            toggleDefaultDataButton.setText("Domyślne");
-
-            senderStreetField.setDisable(false);
-            senderPostalCodeField.setDisable(false);
-            senderCityField.setDisable(false);
-            senderCompanyField.setDisable(false);
-            senderNameDataField.setDisable(false);
-            senderNIPField.setDisable(false);
-            defaultSetButton.setDisable(false);
-        }
-    }
-
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         if (image != null) {
             logoImage.setImage(image);
         }
 
+        scrollPane.setFitToWidth(true);
+
+        /*
         postalCodeField.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
@@ -189,6 +151,7 @@ public class GeneratorController implements Initializable {
                 } else wrongValueLabel2.setVisible(true);
             }
         });
+        */
 
         if (model == null) {
             prepareController(new GeneratorModel());
