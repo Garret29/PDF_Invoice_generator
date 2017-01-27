@@ -154,14 +154,10 @@ public class GeneratorController implements Initializable {
         */
 
         if (model == null) {
-            prepareController(new GeneratorModel());
+            setModel(new GeneratorModel());
+            setInvoiceData(new Hashtable<>());
         }
         updateData();
-    }
-
-    public void prepareController(GeneratorModel model) {
-        setModel(model);
-        setInvoiceData(new Hashtable<>());
     }
 
     public void setModel(GeneratorModel model) {
