@@ -14,9 +14,9 @@
         <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES"/>
     </rowConstraints>
     <children>
-        <ScrollPane fx:id="scrollPane" vvalue="0.68">
+        <ScrollPane fx:id="scrollPane">
             <content>
-                <GridPane hgap="4.0" prefHeight="800.0" prefWidth="500.0">
+                <GridPane fx:id="invoiceFormPane" hgap="4.0" prefHeight="800.0" prefWidth="500.0">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="99.0" minWidth="10.0" prefWidth="12.0"/>
                         <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="144.0" minWidth="10.0"
@@ -128,24 +128,38 @@
                         <TextField fx:id="invoicePaymentDateField" GridPane.columnIndex="2" GridPane.rowIndex="24"/>
                         <TextField fx:id="invoiceDateField" GridPane.columnIndex="2" GridPane.rowIndex="25"/>
                         <TextField fx:id="invoiceCityField" GridPane.columnIndex="2" GridPane.rowIndex="26"/>
-                        <Label fx:id="wrongValueLabel2" text="Błędna wartość!" textFill="RED" visible="false"
+                        <Label fx:id="wrongValueLabel2" text="Błędna wartość" textFill="RED" visible="false"
                                GridPane.columnIndex="3" GridPane.rowIndex="22"/>
-                        <Label fx:id="wrongValueLabel" text="Błędna wartość!" textFill="RED" visible="false"
+                        <Label fx:id="wrongValueLabel" text="Błędna wartość" textFill="RED" visible="false"
                                GridPane.columnIndex="3" GridPane.rowIndex="23"/>
-                        <Label fx:id="wrongCodeLabel" text="Błędny kod!" textFill="RED" visible="false"
+                        <Label fx:id="wrongCodeLabel" text="Błędny kod" textFill="RED" visible="false"
                                GridPane.columnIndex="3" GridPane.rowIndex="15"/>
-                        <Label fx:id="wrongNIPLabel2" text="Błędny NIP!" textFill="RED" visible="false"
+                        <Label fx:id="wrongNIPLabel2" text="Błędny NIP" textFill="RED" visible="false"
                                GridPane.columnIndex="3" GridPane.rowIndex="8"/>
-                        <Label fx:id="wrongCodeLabel2" text="Błędny kod!" textFill="RED" visible="false"
+                        <Label fx:id="wrongCodeLabel2" text="Błędny kod" textFill="RED" visible="false"
                                GridPane.columnIndex="3" GridPane.rowIndex="6"/>
-                        <Label fx:id="wrongNIPLabel" text="Błędny NIP!" textFill="RED" visible="false"
+                        <Label fx:id="wrongNIPLabel" text="Błędny NIP" textFill="RED" visible="false"
                                GridPane.columnIndex="3" GridPane.rowIndex="17"/>
-                        <CheckBox alignment="CENTER_RIGHT" mnemonicParsing="false" text="Zapisz dane przy generacji"
-                                  GridPane.columnIndex="2" GridPane.halignment="RIGHT"/>
-                        <Button mnemonicParsing="false" text="Wczytaj" GridPane.columnIndex="3"/>
-                        <Button mnemonicParsing="false" text="Wczytaj" GridPane.columnIndex="3" GridPane.rowIndex="9"/>
-                        <CheckBox mnemonicParsing="false" text="Zapisz dane przy generacji" GridPane.columnIndex="2"
-                                  GridPane.halignment="RIGHT" GridPane.rowIndex="9"/>
+                        <MenuButton fx:id="receiverMenuButton" mnemonicParsing="false" text="Zapisz/wczytaj dane"
+                                    GridPane.columnIndex="2" GridPane.halignment="RIGHT">
+                            <items>
+                                <MenuItem mnemonicParsing="false" onAction="#saveReceiverData" text="Zapisz"/>
+                                <MenuItem mnemonicParsing="false" onAction="#loadReceiverData" text="Wczytaj"/>
+                            </items>
+                        </MenuButton>
+                        <MenuButton fx:id="senderMenuButton" mnemonicParsing="false" text="Zapisz/wczytaj dane"
+                                    GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="9">
+                            <items>
+                                <MenuItem mnemonicParsing="false" onAction="#saveSenderData" text="Zapisz"/>
+                                <MenuItem mnemonicParsing="false" onAction="#loadSenderData" text="Wczytaj"/>
+                            </items>
+                        </MenuButton>
+                        <!--
+                        <CheckBox fx:id="receiverSaveCheckbox" alignment="CENTER_RIGHT" mnemonicParsing="false" text="Zapisz dane przy generacji" GridPane.columnIndex="2" GridPane.halignment="RIGHT" />
+                        <Button fx:id="receiverLoadButton" mnemonicParsing="false" onAction="#loadSenderData" text="Wczytaj" GridPane.columnIndex="3" />
+                        <CheckBox fx:id="senderSaveCheckbox" mnemonicParsing="false" text="Zapisz dane przy generacji" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="9" />
+                        <Button fx:id="senderLoadButton" mnemonicParsing="false" onAction="#loadReceiverData" text="Wczytaj" GridPane.columnIndex="3" GridPane.rowIndex="9" />
+                        -->
                     </children>
                 </GridPane>
             </content>

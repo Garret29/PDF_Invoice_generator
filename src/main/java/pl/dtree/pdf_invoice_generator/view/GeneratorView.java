@@ -7,31 +7,27 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import pl.dtree.pdf_invoice_generator.controller.GeneratorController;
 
+import java.io.IOException;
+
 
 public class GeneratorView extends Application {
 
     private Stage stage;
 
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) {
 
 
         FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("view.fxml"));
-        GridPane gridPane = loader.load();
+
+        GridPane gridPane = null;
+        try {
+            gridPane = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         GeneratorController controller = loader.getController();
-
-        //@SuppressWarnings("ConstantConditions") Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("invoiceGeneratorView.fxml"));
-        //((GeneratorController)loader.getController()).setModel(model);
-
-        /*
-        loader.setControllerFactory(new Callback<Class<?>, Object>() {
-            @Override
-            public Object call(Class<?> param) {
-                return new GeneratorController(model);
-            }
-        });
-        */
-
 
         Scene scene = new Scene(gridPane, 900, 450);
         stage.setTitle("Generator faktur Dtree");
@@ -40,7 +36,7 @@ public class GeneratorView extends Application {
         stage.show();
     }
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
 
         launch(args);
     }

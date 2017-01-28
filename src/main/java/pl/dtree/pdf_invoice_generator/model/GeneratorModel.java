@@ -9,12 +9,13 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Hashtable;
 
 public class GeneratorModel {
 
     private File logoImage;
-    private Hashtable<String, String> invoiceData;
+    private JSONObject invoiceData;
+    private JSONObject senderData;
+    private JSONObject receiverData;
 
     public void generatePDF(File file) throws IOException{
 
@@ -44,6 +45,14 @@ public class GeneratorModel {
     }
 
     public void setInvoiceData(JSONObject jsonObject) {
-        this.invoiceData = invoiceData;
+        this.invoiceData = jsonObject;
+    }
+
+    public void setSenderData(JSONObject senderData) {
+        this.senderData = senderData;
+    }
+
+    public void setReceiverData(JSONObject receiverData) {
+        this.receiverData = receiverData;
     }
 }
