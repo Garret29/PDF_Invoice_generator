@@ -32,6 +32,8 @@ public class GeneratorView extends Application {
         Scene scene = new Scene(gridPane, 900, 450);
         stage.setTitle("Generator faktur Dtree");
         stage.setScene(scene);
+        stage.setMaxHeight(842.0);
+        stage.setMaxWidth(1366.0);
         stage.setResizable(true);
         stage.show();
     }
