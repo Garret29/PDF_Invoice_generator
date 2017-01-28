@@ -7,22 +7,22 @@
           prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1"
           fx:controller="pl.dtree.pdf_invoice_generator.controller.GeneratorController">
     <columnConstraints>
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="591.0" minWidth="10.0" prefWidth="531.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="445.0" minWidth="10.0" prefWidth="369.0"/>
     </columnConstraints>
     <rowConstraints>
         <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES"/>
     </rowConstraints>
     <children>
-        <ScrollPane fx:id="scrollPane" vvalue="0.88">
+        <ScrollPane fx:id="scrollPane" vvalue="0.68">
             <content>
-                <GridPane hgap="4.0" prefHeight="800.0" prefWidth="435.0">
+                <GridPane hgap="4.0" prefHeight="800.0" prefWidth="500.0">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="99.0" minWidth="10.0" prefWidth="12.0"/>
                         <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="144.0" minWidth="10.0"
-                                           prefWidth="112.0"/>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="240.0" minWidth="10.0" prefWidth="182.0"/>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="196.0" minWidth="10.0" prefWidth="119.0"/>
+                                           prefWidth="134.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="302.0" minWidth="10.0" prefWidth="249.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="196.0" minWidth="10.0" prefWidth="68.0"/>
                     </columnConstraints>
                     <rowConstraints>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
@@ -56,36 +56,43 @@
                     </rowConstraints>
                     <children>
                         <Label text="Dane odbiorcy" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
-                        <Label alignment="CENTER_RIGHT" text="Odbiorca:" GridPane.columnIndex="1"
-                               GridPane.rowIndex="1"/>
-                        <Label alignment="CENTER_RIGHT" text="Ulica:" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
-                        <Label alignment="CENTER_RIGHT" text="Nr domu:" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
-                        <Label alignment="CENTER_RIGHT" text="Nr mieszkania:" GridPane.columnIndex="1"
+                        <Label alignment="CENTER_RIGHT" minHeight="17.0" minWidth="52.0" text="Odbiorca:"
+                               GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                        <Label alignment="CENTER_RIGHT" minHeight="17.0" minWidth="29.0" text="Ulica:"
+                               GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                        <Label alignment="CENTER_RIGHT" minHeight="17.0" minWidth="51.0" text="Nr domu:"
+                               GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+                        <Label alignment="CENTER_RIGHT" minWidth="77.0" text="Nr mieszkania:" GridPane.columnIndex="1"
                                GridPane.rowIndex="5"/>
-                        <Label alignment="CENTER_RIGHT" text="Kod pocztowy:" GridPane.columnIndex="1"
+                        <Label alignment="CENTER_RIGHT" minWidth="78.0" text="Kod pocztowy:" GridPane.columnIndex="1"
                                GridPane.rowIndex="6"/>
-                        <Label alignment="CENTER_RIGHT" text="Miasto:" GridPane.columnIndex="1" GridPane.rowIndex="7"/>
-                        <Label alignment="CENTER_RIGHT" text="NIP:" GridPane.columnIndex="1" GridPane.rowIndex="8"/>
+                        <Label alignment="CENTER_RIGHT" minWidth="39.0" text="Miasto:" GridPane.columnIndex="1"
+                               GridPane.rowIndex="7"/>
+                        <Label alignment="CENTER_RIGHT" minWidth="22.0" text="NIP:" GridPane.columnIndex="1"
+                               GridPane.rowIndex="8"/>
                         <Label text="Dane wystawcy" GridPane.columnIndex="2" GridPane.rowIndex="9"/>
-                        <Label alignment="CENTER_RIGHT" text="Wystawca:" GridPane.columnIndex="1"
+                        <Label alignment="CENTER_RIGHT" minWidth="56.0" text="Wystawca:" GridPane.columnIndex="1"
                                GridPane.rowIndex="10"/>
-                        <Label alignment="CENTER_RIGHT" text="Ulica:" GridPane.columnIndex="1" GridPane.rowIndex="12"/>
-                        <Label alignment="CENTER_RIGHT" text="Nr domu:" GridPane.columnIndex="1"
+                        <Label alignment="CENTER_RIGHT" minWidth="29.0" text="Ulica:" GridPane.columnIndex="1"
+                               GridPane.rowIndex="12"/>
+                        <Label alignment="CENTER_RIGHT" minWidth="51.0" text="Nr domu:" GridPane.columnIndex="1"
                                GridPane.rowIndex="13"/>
-                        <Label alignment="CENTER_RIGHT" text="Nr mieszkania:" GridPane.columnIndex="1"
+                        <Label alignment="CENTER_RIGHT" minWidth="77.0" text="Nr mieszkania:" GridPane.columnIndex="1"
                                GridPane.rowIndex="14"/>
-                        <Label alignment="CENTER_RIGHT" text="Kod pocztowy:" GridPane.columnIndex="1"
+                        <Label alignment="CENTER_RIGHT" minWidth="78.0" text="Kod pocztowy:" GridPane.columnIndex="1"
                                GridPane.rowIndex="15"/>
-                        <Label alignment="CENTER_RIGHT" text="Miasto:" GridPane.columnIndex="1" GridPane.rowIndex="16"/>
-                        <Label alignment="CENTER_RIGHT" text="NIP:" GridPane.columnIndex="1" GridPane.rowIndex="17"/>
-                        <Label alignment="CENTER_RIGHT" text="Nr rachunku:" GridPane.columnIndex="1"
+                        <Label alignment="CENTER_RIGHT" minWidth="39.0" text="Miasto:" GridPane.columnIndex="1"
+                               GridPane.rowIndex="16"/>
+                        <Label alignment="CENTER_RIGHT" minWidth="22.0" text="NIP:" GridPane.columnIndex="1"
+                               GridPane.rowIndex="17"/>
+                        <Label alignment="CENTER_RIGHT" minWidth="68.0" text="Nr rachunku:" GridPane.columnIndex="1"
                                GridPane.rowIndex="18"/>
                         <Label text="Dane faktury" GridPane.columnIndex="2" GridPane.rowIndex="19"/>
-                        <Label alignment="CENTER_RIGHT" text="Identyfikator faktury:" GridPane.columnIndex="1"
-                               GridPane.rowIndex="20"/>
-                        <Label alignment="CENTER_RIGHT" text="Nazwa usługi:" GridPane.columnIndex="1"
+                        <Label alignment="CENTER_RIGHT" minWidth="110.0" text="Identyfikator faktury:"
+                               GridPane.columnIndex="1" GridPane.rowIndex="20"/>
+                        <Label alignment="CENTER_RIGHT" minWidth="74.0" text="Nazwa usługi:" GridPane.columnIndex="1"
                                GridPane.rowIndex="21"/>
-                        <Label alignment="CENTER_RIGHT" text="Wartość:" GridPane.columnIndex="1"
+                        <Label alignment="CENTER_RIGHT" minWidth="46.0" text="Wartość:" GridPane.columnIndex="1"
                                GridPane.rowIndex="22"/>
                         <Label alignment="CENTER_RIGHT" text="Termin płatności:" GridPane.columnIndex="1"
                                GridPane.rowIndex="24"/>
@@ -95,14 +102,14 @@
                                GridPane.rowIndex="26"/>
 
 
-                        <TextField fx:id="recieverField" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
-                        <TextField fx:id="recieverField2" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
-                        <TextField fx:id="recieverStreetField" GridPane.columnIndex="2" GridPane.rowIndex="3"/>
-                        <TextField fx:id="recieverBuildingField" GridPane.columnIndex="2" GridPane.rowIndex="4"/>
-                        <TextField fx:id="recieverApartmentField" GridPane.columnIndex="2" GridPane.rowIndex="5"/>
-                        <TextField fx:id="recieverPostalCodeField" GridPane.columnIndex="2" GridPane.rowIndex="6"/>
-                        <TextField fx:id="recieverCityField" GridPane.columnIndex="2" GridPane.rowIndex="7"/>
-                        <TextField fx:id="recieverNIPField" GridPane.columnIndex="2" GridPane.rowIndex="8"/>
+                        <TextField fx:id="receiverField" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+                        <TextField fx:id="receiverField2" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
+                        <TextField fx:id="receiverStreetField" GridPane.columnIndex="2" GridPane.rowIndex="3"/>
+                        <TextField fx:id="receiverBuildingField" GridPane.columnIndex="2" GridPane.rowIndex="4"/>
+                        <TextField fx:id="receiverApartmentField" GridPane.columnIndex="2" GridPane.rowIndex="5"/>
+                        <TextField fx:id="receiverPostalCodeField" GridPane.columnIndex="2" GridPane.rowIndex="6"/>
+                        <TextField fx:id="receiverCityField" GridPane.columnIndex="2" GridPane.rowIndex="7"/>
+                        <TextField fx:id="receiverNIPField" GridPane.columnIndex="2" GridPane.rowIndex="8"/>
                         <TextField fx:id="senderField" GridPane.columnIndex="2" GridPane.rowIndex="10"/>
                         <TextField fx:id="senderField2" GridPane.columnIndex="2" GridPane.rowIndex="11"/>
                         <TextField fx:id="senderStreetField" GridPane.columnIndex="2" GridPane.rowIndex="12"/>
@@ -114,12 +121,31 @@
                         <TextField fx:id="senderAccountField" GridPane.columnIndex="2" GridPane.rowIndex="18"/>
                         <TextField fx:id="invoiceIDField" GridPane.columnIndex="2" GridPane.rowIndex="20"/>
                         <TextField fx:id="invoiceServiceField" GridPane.columnIndex="2" GridPane.rowIndex="21"/>
-                        <TextField fx:id="invoiceValueField" GridPane.columnIndex="2" GridPane.rowIndex="22"/>
-                        <TextField fx:id="invoiceInWordsValueField" GridPane.columnIndex="2" GridPane.rowIndex="23"/>
+                        <TextField fx:id="invoiceValueField" promptText="Liczbowo" GridPane.columnIndex="2"
+                                   GridPane.rowIndex="22"/>
+                        <TextField fx:id="invoiceInWordsValueField" promptText="Słownie" GridPane.columnIndex="2"
+                                   GridPane.rowIndex="23"/>
                         <TextField fx:id="invoicePaymentDateField" GridPane.columnIndex="2" GridPane.rowIndex="24"/>
                         <TextField fx:id="invoiceDateField" GridPane.columnIndex="2" GridPane.rowIndex="25"/>
                         <TextField fx:id="invoiceCityField" GridPane.columnIndex="2" GridPane.rowIndex="26"/>
-
+                        <Label fx:id="wrongValueLabel2" text="Błędna wartość!" textFill="RED" visible="false"
+                               GridPane.columnIndex="3" GridPane.rowIndex="22"/>
+                        <Label fx:id="wrongValueLabel" text="Błędna wartość!" textFill="RED" visible="false"
+                               GridPane.columnIndex="3" GridPane.rowIndex="23"/>
+                        <Label fx:id="wrongCodeLabel" text="Błędny kod!" textFill="RED" visible="false"
+                               GridPane.columnIndex="3" GridPane.rowIndex="15"/>
+                        <Label fx:id="wrongNIPLabel2" text="Błędny NIP!" textFill="RED" visible="false"
+                               GridPane.columnIndex="3" GridPane.rowIndex="8"/>
+                        <Label fx:id="wrongCodeLabel2" text="Błędny kod!" textFill="RED" visible="false"
+                               GridPane.columnIndex="3" GridPane.rowIndex="6"/>
+                        <Label fx:id="wrongNIPLabel" text="Błędny NIP!" textFill="RED" visible="false"
+                               GridPane.columnIndex="3" GridPane.rowIndex="17"/>
+                        <CheckBox alignment="CENTER_RIGHT" mnemonicParsing="false" text="Zapisz dane przy generacji"
+                                  GridPane.columnIndex="2" GridPane.halignment="RIGHT"/>
+                        <Button mnemonicParsing="false" text="Wczytaj" GridPane.columnIndex="3"/>
+                        <Button mnemonicParsing="false" text="Wczytaj" GridPane.columnIndex="3" GridPane.rowIndex="9"/>
+                        <CheckBox mnemonicParsing="false" text="Zapisz dane przy generacji" GridPane.columnIndex="2"
+                                  GridPane.halignment="RIGHT" GridPane.rowIndex="9"/>
                     </children>
                 </GridPane>
             </content>
@@ -127,10 +153,8 @@
         <GridPane GridPane.columnIndex="1">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="124.0" minWidth="10.0" prefWidth="112.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="107.0" minWidth="10.0" prefWidth="38.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="86.0" minWidth="10.0" prefWidth="62.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="126.0" minWidth="10.0" prefWidth="126.0"/>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
             </columnConstraints>
             <rowConstraints>
@@ -143,12 +167,15 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
             </rowConstraints>
             <children>
-                <Button defaultButton="true" mnemonicParsing="false" onAction="#generateFileAction" text="Generuj"
-                        GridPane.columnIndex="5" GridPane.rowIndex="6"/>
-                <Button mnemonicParsing="false" onAction="#changeLogoAction" text="Wybierz logo..."
-                        GridPane.columnIndex="2" GridPane.rowIndex="3"/>
+                <Button defaultButton="true" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false"
+                        onAction="#generateFileAction" prefHeight="25.0" prefWidth="60.0" text="Generuj"
+                        GridPane.columnIndex="3" GridPane.rowIndex="6"/>
+                <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#changeLogoAction"
+                        prefHeight="25.0" prefWidth="95.0" text="Wybierz logo..." GridPane.columnIndex="2"
+                        GridPane.rowIndex="6"/>
                 <ImageView fx:id="logoImage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true"
-                           GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                           GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1"/>
+                <Label text="Logo:" GridPane.halignment="CENTER" GridPane.rowIndex="1"/>
             </children>
         </GridPane>
     </children>

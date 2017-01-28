@@ -1,42 +1,47 @@
 package pl.dtree.pdf_invoice_generator.controller;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Window;
+import org.json.JSONObject;
 import pl.dtree.pdf_invoice_generator.model.GeneratorModel;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Hashtable;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 
 public class GeneratorController implements Initializable {
 
 
     @FXML
-    public TextField recieverField;
+    public TextField receiverField;
     @FXML
-    public TextField recieverField2;
+    public TextField receiverField2;
     @FXML
-    public TextField recieverBuildingField;
+    public TextField receiverBuildingField;
     @FXML
-    public TextField recieverStreetField;
+    public TextField receiverStreetField;
     @FXML
-    public TextField recieverApartmentField;
+    public TextField receiverApartmentField;
     @FXML
-    public TextField recieverPostalCodeField;
+    public TextField receiverPostalCodeField;
     @FXML
-    public TextField recieverCityField;
+    public TextField receiverCityField;
     @FXML
-    public TextField recieverNIPField;
+    public TextField receiverNIPField;
+
     @FXML
     public TextField senderField;
     @FXML
@@ -55,6 +60,7 @@ public class GeneratorController implements Initializable {
     public TextField senderNIPField;
     @FXML
     public TextField senderAccountField;
+
     @FXML
     public TextField invoiceIDField;
     @FXML
@@ -69,17 +75,53 @@ public class GeneratorController implements Initializable {
     public TextField invoiceDateField;
     @FXML
     public TextField invoiceCityField;
-    public ScrollPane scrollPane;
 
+    @FXML
+    public ScrollPane scrollPane;
+    @FXML
+    public Label wrongValueLabel2;
+    @FXML
+    public Label wrongValueLabel;
+    @FXML
+    public Label wrongCodeLabel2;
+    @FXML
+    public Label wrongNIPLabel2;
+    @FXML
+    public Label wrongCodeLabel;
+    @FXML
+    public Label wrongNIPLabel;
     @FXML
     ImageView logoImage;
 
     private Image image;
     private GeneratorModel model;
-    private Hashtable<String, String> invoiceData;
+    private JSONObject invoiceData;
 
     public void updateData() {
-
+        invoiceData.put("receiver", receiverField.getText());
+        invoiceData.put("receiverMore", receiverField2.getText());
+        invoiceData.put("receiverBuilding", receiverBuildingField.getText());
+        invoiceData.put("receiverApartment", receiverApartmentField.getText());
+        invoiceData.put("receiverPostalCode", receiverPostalCodeField.getText());
+        invoiceData.put("receiverStreet", receiverStreetField.getText());
+        invoiceData.put("receiverCity", receiverCityField.getText());
+        invoiceData.put("receiverNIP", receiverNIPField.getText());
+        invoiceData.put("sender", senderField.getText());
+        invoiceData.put("senderMore", senderField2.getText());
+        invoiceData.put("senderBuilding", senderBuildingField.getText());
+        invoiceData.put("senderApartment", senderApartmentField.getText());
+        invoiceData.put("senderPostalCode", senderPostalCodeField.getText());
+        invoiceData.put("senderStreet", senderStreetField.getText());
+        invoiceData.put("senderCity", senderCityField.getText());
+        invoiceData.put("senderNIP", senderNIPField.getText());
+        invoiceData.put("senderAccountNumber", senderAccountField.getText());
+        invoiceData.put("invoiceID", invoiceIDField.getText());
+        invoiceData.put("invoiceService", invoiceServiceField.getText());
+        invoiceData.put("invoiceValue", invoiceValueField.getText());
+        invoiceData.put("invoiceInWordsValue", invoiceInWordsValueField.getText());
+        invoiceData.put("invoicePaymentDate", invoicePaymentDateField.getText());
+        invoiceData.put("invoiceDate", invoiceDateField.getText());
+        invoiceData.put("invoiceCity", invoiceCityField.getText());
     }
 
     @FXML
@@ -124,38 +166,47 @@ public class GeneratorController implements Initializable {
 
         scrollPane.setFitToWidth(true);
 
-        /*
-        postalCodeField.textProperty().addListener(new ChangeListener<String>() {
+
+        receiverPostalCodeField.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if (Pattern.matches("\\d\\d-\\d\\d\\d", postalCodeField.getCharacters())) {
+                if (Pattern.matches("(\\d\\d-\\d\\d\\d)?", receiverPostalCodeField.getCharacters())) {
+                    wrongCodeLabel2.setVisible(false);
+                } else wrongCodeLabel2.setVisible(true);
+            }
+        });
+
+        senderPostalCodeField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (Pattern.matches("(\\d\\d-\\d\\d\\d)?", senderPostalCodeField.getCharacters())) {
                     wrongCodeLabel.setVisible(false);
                 } else wrongCodeLabel.setVisible(true);
             }
         });
 
-        valueField.textProperty().addListener(new ChangeListener<String>() {
+        invoiceValueField.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if (Pattern.matches("(((\\d+\\s{1})*)\\d+$)?", valueField.getCharacters())) {
+                if (Pattern.matches("(((\\d+\\s{1})*)\\d+$)?", invoiceValueField.getCharacters())) {
+                    wrongValueLabel2.setVisible(false);
+                } else wrongValueLabel2.setVisible(true);
+            }
+        });
+
+        invoiceInWordsValueField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (Pattern.matches("(((\\p{javaAlphabetic}+\\s{1})*)\\p{javaAlphabetic}+$)?", invoiceInWordsValueField.getCharacters())) {
                     wrongValueLabel.setVisible(false);
                 } else wrongValueLabel.setVisible(true);
             }
         });
 
-        inWordsValueField.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if (Pattern.matches("(((\\p{javaAlphabetic}+\\s{1})*)\\p{javaAlphabetic}+$)?", inWordsValueField.getCharacters())) {
-                    wrongValueLabel2.setVisible(false);
-                } else wrongValueLabel2.setVisible(true);
-            }
-        });
-        */
 
         if (model == null) {
             setModel(new GeneratorModel());
-            setInvoiceData(new Hashtable<>());
+            setInvoiceData(new JSONObject());
         }
         updateData();
     }
@@ -164,11 +215,11 @@ public class GeneratorController implements Initializable {
         this.model = model;
     }
 
-    public Hashtable<String, String> getInvoiceData() {
+    public JSONObject getInvoiceData() {
         return invoiceData;
     }
 
-    public void setInvoiceData(Hashtable<String, String> invoiceData) {
+    public void setInvoiceData(JSONObject invoiceData) {
         this.invoiceData = invoiceData;
     }
 

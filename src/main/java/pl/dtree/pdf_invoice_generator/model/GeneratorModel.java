@@ -5,6 +5,7 @@ import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
@@ -42,7 +43,7 @@ public class GeneratorModel {
         this.logoImage = logoImage;
     }
 
-    public void setInvoiceData(Hashtable<String, String> invoiceData) {
+    public void setInvoiceData(JSONObject jsonObject) {
         this.invoiceData = invoiceData;
     }
 }
