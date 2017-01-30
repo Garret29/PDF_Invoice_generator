@@ -1,15 +1,13 @@
 package pl.dtree.pdf_invoice_generator.controller;
 
+import com.itextpdf.text.DocumentException;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -206,12 +204,16 @@ public class GeneratorController implements Initializable {
         File file = saveChooser.showSaveDialog(stage);
         if (file != null) {
             try {
+                updateData();
                 model.setInvoiceData(invoiceData);
                 model.setReceiverData(receiverData);
                 model.setSenderData(senderData);
                 model.generatePDF(file);
-            } catch (IOException e) {
-                e.printStackTrace();
+            } catch (IOException | DocumentException e) {
+                Dialog dialog = new Dialog<>();
+                dialog.getDialogPane().getButtonTypes().add(new ButtonType("Ok", ButtonBar.ButtonData.OK_DONE));
+                dialog.setContentText("Wystąpił błąd podczas próby zapisu");
+                dialog.showAndWait();
             }
         }
     }
@@ -227,7 +229,7 @@ public class GeneratorController implements Initializable {
         if (file != null) {
             image = new Image(file.toURI().toString());
             logoImage.setImage(image);
-            model.setLogoImage(file);
+            model.setLogoFile(file);
         }
     }
 
@@ -329,8 +331,8 @@ public class GeneratorController implements Initializable {
         receiverData.put("street", receiverStreetField.getText());
         receiverData.put("city", receiverCityField.getText());
         receiverData.put("NIP", receiverNIPField.getText());
-        senderData.put("sender", senderField.getText());
-        senderData.put("senderMore", senderField2.getText());
+        senderData.put("name", senderField.getText());
+        senderData.put("nameMore", senderField2.getText());
         senderData.put("building", senderBuildingField.getText());
         senderData.put("apartment", senderApartmentField.getText());
         senderData.put("postalCode", senderPostalCodeField.getText());
