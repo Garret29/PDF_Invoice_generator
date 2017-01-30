@@ -24,8 +24,27 @@ public class GeneratorModel {
         image.scaleAbsolute(PageSize.A4.getWidth(), PageSize.A4.getHeight());
         image.setAbsolutePosition(0, 0);
         Image logoImage = Image.getInstance(logoFile.toURI().toURL());
-        logoImage.scaleAbsolute((float) (logoImage.getWidth() * 0.35), (float) (logoImage.getHeight() * 0.35));
-        logoImage.setAbsolutePosition(70, 650);
+        //logoImage.scaleAbsolute((float) (logoImage.getWidth() * 0.35), (float) (logoImage.getHeight() * 0.35));
+
+        float logoWidth = logoImage.getWidth();
+        float logoHeight = logoImage.getHeight();
+        float ratioH = logoHeight / logoWidth;
+        float ratioW = logoWidth / logoHeight;
+
+
+        if (logoHeight >= logoWidth) {
+            logoHeight = 150f;
+            logoWidth = 150.0f * ratioW;
+            logoImage.scaleAbsolute(logoWidth, logoHeight);
+
+        } else {
+            logoHeight = 150f * ratioH;
+            logoWidth = 150.0f;
+            logoImage.scaleAbsolute(logoWidth, logoHeight);
+        }
+
+
+        logoImage.setAbsolutePosition(130f - (0.5f * logoWidth), 725f - (0.5f * logoHeight));
         Document document = new Document(PageSize.A4, 0, 0, 0, 0);
         OutputStream outputStream = new FileOutputStream(file);
         PdfWriter writer = PdfWriter.getInstance(document, outputStream);
