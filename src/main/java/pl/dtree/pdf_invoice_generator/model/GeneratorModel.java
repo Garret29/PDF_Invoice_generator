@@ -24,7 +24,7 @@ public class GeneratorModel {
         image.scaleAbsolute(PageSize.A4.getWidth(), PageSize.A4.getHeight());
         image.setAbsolutePosition(0, 0);
         Image logoImage = Image.getInstance(logoFile.toURI().toURL());
-        //logoImage.scaleAbsolute((float) (logoImage.getWidth() * 0.35), (float) (logoImage.getHeight() * 0.35));
+        logoImage.scaleAbsolute((float) (logoImage.getWidth() * 0.35), (float) (logoImage.getHeight() * 0.35));
 
         float logoWidth = logoImage.getWidth();
         float logoHeight = logoImage.getHeight();
