@@ -87,7 +87,7 @@ public class GeneratorModel {
         ColumnText.showTextAligned(pdfContentByte, Element.ALIGN_LEFT, new Phrase("RACHUNEK", fontExtraBold), 265, 733, 0);
         ColumnText.showTextAligned(pdfContentByte, Element.ALIGN_RIGHT, new Phrase(invoiceData.getString("city") + ", " + invoiceData.getString("date"), fontRegular), 565, 795, 0);
 
-        pdfContentByte = writer.getDirectContent();
+        //pdfContentByte = writer.getDirectContent();
         pdfContentByte.addImage(logoImage);
         pdfContentByte = writer.getDirectContentUnder();
         pdfContentByte.addImage(image);

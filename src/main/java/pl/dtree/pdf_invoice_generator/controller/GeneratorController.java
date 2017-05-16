@@ -1,8 +1,6 @@
 package pl.dtree.pdf_invoice_generator.controller;
 
 import com.itextpdf.text.DocumentException;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -91,12 +89,16 @@ public class GeneratorController implements Initializable {
     @FXML
     public Label wrongNIPLabel;
     @FXML
+    private
     MenuButton receiverMenuButton;
     @FXML
+    private
     MenuButton senderMenuButton;
     @FXML
+    private
     GridPane invoiceFormPane;
     @FXML
+    private
     ImageView logoImage;
 
     private Image image;
@@ -115,69 +117,48 @@ public class GeneratorController implements Initializable {
         scrollPane.setFitToWidth(true);
 
 
-        receiverPostalCodeField.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if (Pattern.matches("(\\d\\d-\\d\\d\\d)?", receiverPostalCodeField.getCharacters())) {
-                    wrongCodeLabel2.setVisible(false);
-                } else wrongCodeLabel2.setVisible(true);
-            }
+        receiverPostalCodeField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (Pattern.matches("(\\d\\d-\\d\\d\\d)?", receiverPostalCodeField.getCharacters())) {
+                wrongCodeLabel2.setVisible(false);
+            } else wrongCodeLabel2.setVisible(true);
         });
 
-        senderPostalCodeField.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if (Pattern.matches("(\\d\\d-\\d\\d\\d)?", senderPostalCodeField.getCharacters())) {
-                    wrongCodeLabel.setVisible(false);
-                } else wrongCodeLabel.setVisible(true);
-            }
+        senderPostalCodeField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (Pattern.matches("(\\d\\d-\\d\\d\\d)?", senderPostalCodeField.getCharacters())) {
+                wrongCodeLabel.setVisible(false);
+            } else wrongCodeLabel.setVisible(true);
         });
 
-        invoiceValueField.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if (Pattern.matches("(((\\d+\\s{1})*)\\d+$)?", invoiceValueField.getCharacters())) {
-                    wrongValueLabel2.setVisible(false);
-                } else wrongValueLabel2.setVisible(true);
-            }
+        invoiceValueField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (Pattern.matches("(((\\d+\\s{1})*)\\d+$)?", invoiceValueField.getCharacters())) {
+                wrongValueLabel2.setVisible(false);
+            } else wrongValueLabel2.setVisible(true);
         });
 
-        senderNIPField.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if (Pattern.matches("(((\\d+\\s{1})*)\\d+$)?", senderNIPField.getCharacters())) {
-                    wrongNIPLabel.setVisible(false);
-                } else wrongNIPLabel.setVisible(true);
-            }
+        senderNIPField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (Pattern.matches("(((\\d+\\s{1})*)\\d+$)?", senderNIPField.getCharacters())) {
+                wrongNIPLabel.setVisible(false);
+            } else wrongNIPLabel.setVisible(true);
         });
 
-        receiverNIPField.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if (Pattern.matches("(((\\d+\\s{1})*)\\d+$)?", receiverNIPField.getCharacters())) {
-                    wrongNIPLabel2.setVisible(false);
-                } else wrongNIPLabel2.setVisible(true);
-            }
+        receiverNIPField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (Pattern.matches("(((\\d+\\s{1})*)\\d+$)?", receiverNIPField.getCharacters())) {
+                wrongNIPLabel2.setVisible(false);
+            } else wrongNIPLabel2.setVisible(true);
         });
 
-        invoiceInWordsValueField.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if (Pattern.matches("(((\\p{javaAlphabetic}+\\s{1})*)\\p{javaAlphabetic}+$)?", invoiceInWordsValueField.getCharacters())) {
-                    wrongValueLabel.setVisible(false);
-                } else wrongValueLabel.setVisible(true);
-            }
+        invoiceInWordsValueField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (Pattern.matches("(((\\p{javaAlphabetic}+\\s{1})*)\\p{javaAlphabetic}+$)?", invoiceInWordsValueField.getCharacters())) {
+                wrongValueLabel.setVisible(false);
+            } else wrongValueLabel.setVisible(true);
         });
 
         for (Node node : invoiceFormPane.getChildren()) {
             if (node instanceof TextField) {
-                ((TextField) node).textProperty().addListener(new ChangeListener<String>() {
-                    @Override
-                    public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                        if (((TextField) node).getText().length() > 40) {
-                            String s = ((TextField) node).getText().substring(0, 40);
-                            ((TextField) node).setText(s);
-                        }
+                ((TextField) node).textProperty().addListener((observable, oldValue, newValue) -> {
+                    if (((TextField) node).getText().length() > 40) {
+                        String s = ((TextField) node).getText().substring(0, 40);
+                        ((TextField) node).setText(s);
                     }
                 });
             }
